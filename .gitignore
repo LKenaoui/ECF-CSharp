@@ -1,0 +1,86 @@
+## Fichiers de build ##
+bin/
+obj/
+[Ll]og/
+*.log
+
+## Fichiers temporaires ##
+*.tmp
+*.temp
+*.bak
+*.swp
+
+## Fichiers générés par Visual Studio ##
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build Results ##
+*.exe
+*.dll
+*.pdb
+*.cache
+*.dbmdl
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+*.nupkg
+
+## Visual Studio Code ##
+.vscode/
+
+## Fichiers de test ##
+TestResults/
+*.coverage
+*.coveragexml
+*.testsettings
+*.runsettings
+*.vsp
+*.vspx
+*.vspscc
+*.psess
+
+## JetBrains Rider ##
+.idea/
+*.sln.iml
+
+## NuGet ##
+*.nupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## ASP.NET Core secrets ##
+secrets.json
+*.secret.json
+
+## Configuration de l’environnement local ##
+appsettings.Development.json
+.env
+.env.*
+
+## Dump ou crash reports ##
+*.dmp
+
+## Dossiers spécifiques aux outils ##
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+.stylecop
+*.cache
+
+## Publish output ##
+publish/
+
+## Logs custom ##
+logs/
+*.log
+
+## Fichiers générés automatiquement ##
+Generated_Code/
+
