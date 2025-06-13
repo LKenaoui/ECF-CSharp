@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|c:\\users\\l\u00E9a kenaoui\\desktop\\git\\ecf-cda\\ecf\\ecf\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|solutionrelative:ecf\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|c:\\users\\l\u00E9a kenaoui\\desktop\\git\\ecf-cda\\ecf\\ecf\\controllers\\breedscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|solutionrelative:ecf\\controllers\\breedscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|c:\\users\\l\u00E9a kenaoui\\desktop\\git\\ecf-cda\\ecf\\ecf\\models\\breed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|solutionrelative:ecf\\models\\breed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|c:\\users\\l\u00E9a kenaoui\\desktop\\git\\ecf-cda\\ecf\\ecf\\models\\animal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|solutionrelative:ecf\\models\\animal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|c:\\users\\l\u00E9a kenaoui\\desktop\\git\\ecf-cda\\ecf\\ecf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|solutionrelative:ecf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|c:\\users\\l\u00E9a kenaoui\\desktop\\git\\ecf-cda\\ecf\\ecf\\database\\context\\ecfdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|solutionrelative:ecf\\database\\context\\ecfdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|c:\\users\\l\u00E9a kenaoui\\desktop\\git\\ecf-cda\\ecf\\ecf\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{679AAA43-079D-45C9-BC7B-8B12458E0FAD}|ECF\\ECF.csproj|solutionrelative:ecf\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ECF\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ECF\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAABqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-10T06:46:29.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BreedsController.cs",
+              "DocumentMoniker": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Controllers\\BreedsController.cs",
+              "RelativeDocumentMoniker": "ECF\\Controllers\\BreedsController.cs",
+              "ToolTip": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Controllers\\BreedsController.cs",
+              "RelativeToolTip": "ECF\\Controllers\\BreedsController.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAADwv5QAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T06:45:18.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Program.cs",
+              "RelativeDocumentMoniker": "ECF\\Program.cs",
+              "ToolTip": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Program.cs",
+              "RelativeToolTip": "ECF\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T12:26:14.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\appsettings.json",
+              "RelativeDocumentMoniker": "ECF\\appsettings.json",
+              "ToolTip": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\appsettings.json",
+              "RelativeToolTip": "ECF\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-06T12:24:45.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EcfDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Database\\Context\\EcfDbContext.cs",
+              "RelativeDocumentMoniker": "ECF\\Database\\Context\\EcfDbContext.cs",
+              "ToolTip": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Database\\Context\\EcfDbContext.cs",
+              "RelativeToolTip": "ECF\\Database\\Context\\EcfDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T12:01:15.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Breed.cs",
+              "DocumentMoniker": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Models\\Breed.cs",
+              "RelativeDocumentMoniker": "ECF\\Models\\Breed.cs",
+              "ToolTip": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Models\\Breed.cs",
+              "RelativeToolTip": "ECF\\Models\\Breed.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T11:51:37.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Animal.cs",
+              "DocumentMoniker": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Models\\Animal.cs",
+              "RelativeDocumentMoniker": "ECF\\Models\\Animal.cs",
+              "ToolTip": "C:\\Users\\L\u00E9a Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\Models\\Animal.cs",
+              "RelativeToolTip": "ECF\\Models\\Animal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T11:51:30.754Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
