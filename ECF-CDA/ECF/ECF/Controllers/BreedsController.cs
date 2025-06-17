@@ -20,19 +20,25 @@ namespace ECF.Controllers
         }
 
         // GET: Breeds
+        // Affiche la liste de toutes les races
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Breeds.ToListAsync());
+            // Récupère toutes les races
+            var EcfDbContext = _context.Breeds;
+            return View(await EcfDbContext.ToListAsync());
         }
 
         // GET: Breeds/Details/5
+        // Affiche les détails d'une race spécifique
         public async Task<IActionResult> Details(int? id)
         {
+            // Vérifie si un ID a été fourni
             if (id == null)
             {
                 return NotFound();
             }
 
+            // Récupère la race
             var breed = await _context.Breeds
                 .FirstOrDefaultAsync(m => m.BreedId == id);
             if (breed == null)
@@ -44,20 +50,22 @@ namespace ECF.Controllers
         }
 
         // GET: Breeds/Create
+        // Affiche le formulaire de création d'une race
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Breeds/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Traite le formulaire de création d'une race
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BreedId,BreedName,Description")] Breed breed)
+        public async Task<IActionResult> Create([Bind("BreedId,BreedName")] Breed breed)
         {
+            // Vérifie si les données du formulaire sont valides
             if (ModelState.IsValid)
             {
+                // Ajoute la nouvelle race à la base de données
                 _context.Add(breed);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -66,13 +74,16 @@ namespace ECF.Controllers
         }
 
         // GET: Breeds/Edit/5
+        // Affiche le formulaire de modification d'une race
         public async Task<IActionResult> Edit(int? id)
         {
+            // Vérifie si un ID a été fourni
             if (id == null)
             {
                 return NotFound();
             }
 
+            // Récupère la race à modifier
             var breed = await _context.Breeds.FindAsync(id);
             if (breed == null)
             {
@@ -82,26 +93,29 @@ namespace ECF.Controllers
         }
 
         // POST: Breeds/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Traite le formulaire de modification d'une race
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BreedId,BreedName,Description")] Breed breed)
+        public async Task<IActionResult> Edit(int id, [Bind("BreedId,BreedName")] Breed breed)
         {
+            // Vérifie la cohérence des IDs
             if (id != breed.BreedId)
             {
                 return NotFound();
             }
 
+            // Vérifie si les données du formulaire sont valides
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // Met à jour la race dans la base de données
                     _context.Update(breed);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    // Gère les erreurs de concurrence
                     if (!BreedExists(breed.BreedId))
                     {
                         return NotFound();
@@ -117,13 +131,16 @@ namespace ECF.Controllers
         }
 
         // GET: Breeds/Delete/5
+        // Affiche la page de confirmation de suppression
         public async Task<IActionResult> Delete(int? id)
         {
+            // Vérifie si un ID a été fourni
             if (id == null)
             {
                 return NotFound();
             }
 
+            // Récupère la race
             var breed = await _context.Breeds
                 .FirstOrDefaultAsync(m => m.BreedId == id);
             if (breed == null)
@@ -135,20 +152,25 @@ namespace ECF.Controllers
         }
 
         // POST: Breeds/Delete/5
+        // Effectue la suppression de la race
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // Récupère la race à supprimer
             var breed = await _context.Breeds.FindAsync(id);
             if (breed != null)
             {
+                // Supprime la race de la base de données
                 _context.Breeds.Remove(breed);
             }
 
+            // Sauvegarde les changements
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        // Vérifie si une race existe dans la base de données
         private bool BreedExists(int id)
         {
             return _context.Breeds.Any(e => e.BreedId == id);

@@ -7503,11 +7503,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\ECF.csproj",
+      "projectUniqueName": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CSharp\\ECF-CDA\\ECF\\ECF\\ECF.csproj",
       "projectName": "ECF",
-      "projectPath": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\ECF.csproj",
+      "projectPath": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CSharp\\ECF-CDA\\ECF\\ECF\\ECF.csproj",
       "packagesPath": "C:\\Users\\Léa Kenaoui\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\obj\\",
+      "outputPath": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CSharp\\ECF-CDA\\ECF\\ECF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

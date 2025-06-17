@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VCu6VkAmo50=",
+  "dgSpecHash": "spnYmIHTDF8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CDA\\ECF\\ECF\\ECF.csproj",
+  "projectFilePath": "C:\\Users\\Léa Kenaoui\\Desktop\\Git\\ECF-CSharp\\ECF-CDA\\ECF\\ECF\\ECF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Léa Kenaoui\\.nuget\\packages\\azure.core\\1.46.1\\azure.core.1.46.1.nupkg.sha512",
     "C:\\Users\\Léa Kenaoui\\.nuget\\packages\\azure.identity\\1.14.0\\azure.identity.1.14.0.nupkg.sha512",
