@@ -1,0 +1,46 @@
+@model IEnumerable<ECF.Models.Breed>
+
+@{
+    ViewData["Title"] = "Liste des races";
+}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="display-4">@ViewData["Title"]</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Ajouter une race
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var breed in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@breed.BreedName</h5>
+                        <p class="card-text">@breed.Description</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="btn-group w-100">
+                            <a asp-action="Edit" asp-route-id="@breed.BreedId" class="btn btn-outline-primary">
+                                <i class="bi bi-pencil"></i> Modifier
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@breed.BreedId" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i> Supprimer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+} 

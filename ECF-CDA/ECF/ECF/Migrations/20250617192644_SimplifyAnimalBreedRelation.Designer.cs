@@ -11,15 +11,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECF.Migrations
 {
     [DbContext(typeof(EcfDbContext))]
-    [Migration("20250606133449_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250617192644_SimplifyAnimalBreedRelation")]
+    partial class SimplifyAnimalBreedRelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

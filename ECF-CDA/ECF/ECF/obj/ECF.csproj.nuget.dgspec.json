@@ -54,6 +54,14 @@
               "target": "Package",
               "version": "[1.14.0, )"
             },
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.11, )"
@@ -61,6 +69,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[8.0.11, )"
             },
@@ -78,9 +90,17 @@
               "target": "Package",
               "version": "[9.0.5, )"
             },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.9.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
             },
             "System.Text.Json": {
               "target": "Package",

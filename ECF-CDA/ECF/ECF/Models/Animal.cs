@@ -9,20 +9,20 @@ namespace ECF.Models
         [Key]
         public int AnimalId { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required(ErrorMessage = "Le nom est obligatoire")]
+        [MaxLength(50, ErrorMessage = "Le nom ne peut pas dépasser 50 caractères")]
         [Display(Name = "Nom")]
         public string Name { get; set; } = null!;
 
-        [Required]
-        [MaxLength(2000)]
+        [Required(ErrorMessage = "La description est obligatoire")]
+        [MaxLength(2000, ErrorMessage = "La description ne peut pas dépasser 2000 caractères")]
         [Display(Name = "Description")]
         public string Description { get; set; } = null!;
 
-        [Required]
-        [ForeignKey("Breed")]
-        [Display(Name = "RaceId")]
+        [Required(ErrorMessage = "La race est obligatoire")]
+        [Display(Name = "Race")]
         public int BreedId { get; set; }
-        public virtual Breed Breed { get; set; } = null!;
+
+        public virtual Breed? Breed { get; set; }
     }
 }

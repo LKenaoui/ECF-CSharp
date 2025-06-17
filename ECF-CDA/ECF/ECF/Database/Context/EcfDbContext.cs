@@ -51,12 +51,6 @@ namespace ECF.Database.Context
                 .Property(breed => breed.Description)
                 .HasMaxLength(2000)
                 .IsRequired();
-
-            modelBuilder.Entity<Breed>()
-                .HasMany(breed => breed.Animals)
-                .WithOne(animal => animal.Breed)
-                .HasForeignKey(animal => animal.BreedId)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

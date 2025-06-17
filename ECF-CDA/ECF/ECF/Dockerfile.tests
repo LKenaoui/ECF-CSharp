@@ -1,0 +1,26 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS testrunner
+WORKDIR /src
+
+# Configuration NuGet
+ENV DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER=0
+ENV DOTNET_SYSTEM_NET_HTTP_SOCKETSHTTPHANDLER_ENABLEMULTIPLECONNECT=0
+ENV DOTNET_SYSTEM_NET_HTTP_SOCKETSHTTPHANDLER_ENABLEMULTIPLECONNECTS=0
+
+# Création de la structure de dossiers
+RUN mkdir -p ECF TestECF
+
+# Copie des fichiers projet
+COPY ECF.csproj ./ECF/
+COPY TestECF/TestECF.csproj ./TestECF/
+
+# Restauration des packages
+RUN dotnet restore ECF/ECF.csproj
+RUN dotnet restore TestECF/TestECF.csproj
+
+# Copie du reste des fichiers
+COPY . ./ECF/
+COPY TestECF/ ./TestECF/
+
+# Build et test
+RUN dotnet build TestECF/TestECF.csproj
+RUN dotnet test TestECF/TestECF.csproj --logger "trx;LogFileName=test-results.trx"

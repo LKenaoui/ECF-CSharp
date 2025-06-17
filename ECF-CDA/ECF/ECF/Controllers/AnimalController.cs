@@ -9,16 +9,19 @@ using ECF.Database.Context;
 using ECF.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics;
 
 namespace ECF.Controllers
 {
     public class AnimalController : Controller
     {
         private readonly EcfDbContext _context;
+        private readonly ILogger<AnimalController> _logger;
 
-        public AnimalController(EcfDbContext context)
+        public AnimalController(EcfDbContext context, ILogger<AnimalController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Animals
@@ -27,117 +30,126 @@ namespace ECF.Controllers
         {
             try
             {
-                // Prépare la requête pour récupérer les animaux avec leurs relations
-                var query = _context.Animals
-                    .Include(a => a.Breed)         // Charge la race de chaque animal
-                    .AsQueryable();                // Transforme en requête modifiable
+                IQueryable<Animal> animalsWithBreeds = _context.Animals
+                    .Include(a => a.Breed)
+                    .AsQueryable();
 
-                // Exécute la requête et trie les animaux par nom
-                var animals = await query.OrderBy(a => a.Name).ToListAsync();
-                return View(animals);
+                List<Animal> sortedAnimals = await animalsWithBreeds.OrderBy(a => a.Name).ToListAsync();
+                return View(sortedAnimals);
             }
-            catch
+            catch (Exception ex)
             {
-                return View("Error"); // Affiche une page d'erreur
+                _logger.LogError(ex, "Une erreur est survenue lors de la rÃ©cupÃ©ration des animaux");
+                return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
         }
 
         // GET: Animals/Create
-        // Affiche le formulaire de création d'un animal
+        // Affiche le formulaire de crÃ©ation d'un animal
         public async Task<IActionResult> Create(string? returnUrl)
         {
             try
             {
-                // Prépare la liste déroulante des races
                 ViewData["BreedId"] = new SelectList(
                     await _context.Breeds
-                        .OrderBy(b => b.BreedName) // Puis par nom de race
+                        .OrderBy(b => b.BreedName)
                         .ToListAsync(),
-                    "BreedId",    // La valeur qui sera envoyée au serveur
-                    "BreedName"   // Le texte qui sera affiché dans la liste
+                    "BreedId",
+                    "BreedName"
                 );
 
-                // On garde l'URL de retour pour rediriger après la création
                 ViewData["ReturnUrl"] = returnUrl;
-                return View(); // On affiche le formulaire
+                return View();
             }
-            catch
+            catch (Exception ex)
             {
-                // En cas d'erreur, on l'enregistre
-                return View("Error");
+                _logger.LogError(ex, "Une erreur est survenue lors de l'affichage du formulaire de crÃ©ation");
+                return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
         }
 
         // POST: Animals/Create
-        // Traite le formulaire de création d'un animal
+        // Traite le formulaire de crÃ©ation d'un animal
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            // [Bind] spécifie quels champs du formulaire on accepte
-            [Bind("Name,Description,BreedId")] Animal animal,
+            [Bind("Name,Description,BreedId")] Animal newAnimal,
             string? returnUrl)
         {
             try
             {
-                // On vérifie si les données du formulaire sont valides
+                if (string.IsNullOrWhiteSpace(newAnimal.Name))
+                {
+                    ModelState.AddModelError("Name", "Le nom est obligatoire");
+                }
+                if (string.IsNullOrWhiteSpace(newAnimal.Description))
+                {
+                    ModelState.AddModelError("Description", "La description est obligatoire");
+                }
+
+                if (newAnimal.BreedId <= 0)
+                {
+                    ModelState.AddModelError("BreedId", "La race est obligatoire");
+                }
+                else
+                {
+                    var breedExists = await _context.Breeds.AnyAsync(b => b.BreedId == newAnimal.BreedId);
+                    if (!breedExists)
+                    {
+                        ModelState.AddModelError("BreedId", "La race sÃ©lectionnÃ©e n'existe pas");
+                    }
+                }
+
                 if (ModelState.IsValid)
                 {
-                    // On ajoute l'animal à la base de données
-                    _context.Add(animal);
-                    // On sauvegarde les changements
+                    _context.Add(newAnimal);
                     await _context.SaveChangesAsync();
 
-                    // Si une URL de retour est spécifiée et est valide
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
-                        return Redirect(returnUrl); // On redirige vers cette URL
+                        return Redirect(returnUrl);
                     }
-                    // Sinon on redirige vers la liste des animaux
                     return RedirectToAction(nameof(Index));
                 }
 
-                // Si le formulaire n'est pas valide, on recharge les listes déroulantes
                 ViewData["BreedId"] = new SelectList(
                     await _context.Breeds
                         .OrderBy(b => b.BreedName)
                         .ToListAsync(),
                     "BreedId",
                     "BreedName",
-                    animal.BreedId);
+                    newAnimal.BreedId);
 
-                // On garde l'URL de retour
                 ViewData["ReturnUrl"] = returnUrl;
-                // On réaffiche le formulaire avec les erreurs
-                return View(animal);
+                return View(newAnimal);
             }
-            catch
+            catch (Exception ex)
             {
-                // On ajoute un message d'erreur
-                ModelState.AddModelError("", "Une erreur est survenue lors de la création de l'animal.");
-                // On réaffiche le formulaire
-                return View(animal);
+                ModelState.AddModelError("", $"Une erreur est survenue lors de la crÃ©ation de l'animal : {ex.Message}");
+                return View(newAnimal);
             }
         }
 
         // GET: Animals/Edit/5
         // Affiche le formulaire de modification d'un animal
-        public async Task<IActionResult> Edit(int? id, Animal animal)
+        public async Task<IActionResult> Edit(int? id)
         {
-            // Vérifie si un ID a été fourni
             if (id == null)
             {
-                return NotFound(); // Si pas d'ID, on renvoie une erreur 404
+                return NotFound();
             }
 
             try
             {
-                // Vérifie si l'animal existe
+                var animal = await _context.Animals
+                    .Include(a => a.Breed)
+                    .FirstOrDefaultAsync(a => a.AnimalId == id);
+
                 if (animal == null)
                 {
-                    return NotFound(); // Si non, on renvoie une erreur 404
+                    return NotFound();
                 }
 
-                // Prépare la liste des races pour le formulaire
                 ViewData["BreedId"] = new SelectList(
                     await _context.Breeds
                         .OrderBy(b => b.BreedName)
@@ -148,9 +160,10 @@ namespace ECF.Controllers
 
                 return View(animal);
             }
-            catch
+            catch (Exception ex)
             {
-                return View("Error");
+                _logger.LogError(ex, "Une erreur est survenue lors de l'affichage du formulaire de modification");
+                return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
         }
 
@@ -159,22 +172,20 @@ namespace ECF.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
-            [Bind("AnimalId,Name,Description,BreedId")] Animal animal)
+            [Bind("AnimalId,Name,Description,BreedId")] Animal updatedAnimal)
         {
-            // Vérifie la cohérence des IDs
-            if (id != animal.AnimalId)
+            if (id != updatedAnimal.AnimalId)
             {
                 return NotFound();
             }
 
             try
             {
-                // Récupère l'animal existant avec toutes ses relations
-                var existingAnimal = await _context.Animals
+                var currentAnimal = await _context.Animals
+                    .Include(a => a.Breed)
                     .FirstOrDefaultAsync(a => a.AnimalId == id);
 
-                // Vérifie si l'animal existe
-                if (existingAnimal == null)
+                if (currentAnimal == null)
                 {
                     return NotFound();
                 }
@@ -183,15 +194,18 @@ namespace ECF.Controllers
                 {
                     try
                     {
-                        // Met à jour l'animal dans la base de données
-                        _context.Update(animal);
+                        currentAnimal.Name = updatedAnimal.Name;
+                        currentAnimal.Description = updatedAnimal.Description;
+                        currentAnimal.BreedId = updatedAnimal.BreedId;
+
+                        _context.Update(currentAnimal);
                         await _context.SaveChangesAsync();
 
                         return RedirectToAction(nameof(Index));
                     }
                     catch (DbUpdateConcurrencyException)
                     {
-                        if (!AnimalExists(animal.AnimalId))
+                        if (!AnimalExists(updatedAnimal.AnimalId))
                         {
                             return NotFound();
                         }
@@ -199,14 +213,19 @@ namespace ECF.Controllers
                     }
                 }
 
-                // Recharge les listes en cas d'erreur de validation
-                ViewData["BreedId"] = new SelectList(await _context.Breeds.ToListAsync(), "BreedId", "BreedName", animal.BreedId);
-                return View(animal);
+                ViewData["BreedId"] = new SelectList(
+                    await _context.Breeds
+                        .OrderBy(b => b.BreedName)
+                        .ToListAsync(),
+                    "BreedId",
+                    "BreedName",
+                    updatedAnimal.BreedId);
+                return View(updatedAnimal);
             }
             catch
             {
                 ModelState.AddModelError("", "Une erreur est survenue lors de la modification de l'animal.");
-                return View(animal);
+                return View(updatedAnimal);
             }
         }
 
@@ -221,17 +240,16 @@ namespace ECF.Controllers
 
             try
             {
-                // Récupère l'animal avec ses relations
-                var animal = await _context.Animals
+                var animalToDelete = await _context.Animals
                     .Include(a => a.Breed)
                     .FirstOrDefaultAsync(m => m.AnimalId == id);
 
-                if (animal == null)
+                if (animalToDelete == null)
                 {
                     return NotFound();
                 }
 
-                return View(animal);
+                return View(animalToDelete);
             }
             catch
             {
@@ -247,17 +265,15 @@ namespace ECF.Controllers
         {
             try
             {
-                // Récupère l'animal avec ses inscriptions futures
-                var animal = await _context.Animals
+                var animalToDelete = await _context.Animals
                     .FirstOrDefaultAsync(a => a.AnimalId == id);
 
-                if (animal == null)
+                if (animalToDelete == null)
                 {
                     return NotFound();
                 }
 
-                // Supprime l'animal
-                _context.Animals.Remove(animal);
+                _context.Animals.Remove(animalToDelete);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
@@ -268,7 +284,7 @@ namespace ECF.Controllers
             }
         }
 
-        // Vérifie si un animal existe dans la base de données
+        // VÃ©rifie si un animal existe dans la base de donnÃ©es
         private bool AnimalExists(int id)
         {
             return _context.Animals.Any(e => e.AnimalId == id);
@@ -280,7 +296,7 @@ namespace ECF.Controllers
         {
             try
             {
-                // Prépare la liste déroulante des races
+                // PrÃ©pare la liste dÃ©roulante des races
                 ViewData["BreedId"] = new SelectList(
                     await _context.Breeds
                         .OrderBy(b => b.BreedName) // Puis par nom de race
@@ -301,57 +317,53 @@ namespace ECF.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(
-            [Bind("Name,Description,BreedId")] Animal animal)
+            [Bind("Name,Description,BreedId")] Animal newAnimal)
         {
             try
             {
-                // Enregistre les données reçues dans les logs
-                LogInformation("Données reçues : {Animal}", JsonSerializer.Serialize(animal));
+                List<string> validationErrors = new();
 
-                // Validation manuelle des champs
-                var errors = new List<string>();
+                // VÃ©rifie le nom
+                if (string.IsNullOrWhiteSpace(newAnimal.Name))
+                    validationErrors.Add("Le nom est obligatoire");
+                else if (newAnimal.Name.Length > 50)
+                    validationErrors.Add("Le nom ne peut pas dÃ©passer 50 caractÃ¨res");
 
-                // Vérifie le nom
-                if (string.IsNullOrWhiteSpace(animal.Name))
-                    errors.Add("Le nom est obligatoire");
-                else if (animal.Name.Length > 50)
-                    errors.Add("Le nom ne peut pas dépasser 50 caractères");
+                // VÃ©rifie la description
+                if (newAnimal.Description == default)
+                    validationErrors.Add("La date de naissance est obligatoire");
+                else if (newAnimal.Description.Length > 2000)
+                    validationErrors.Add("La description ne peut pas dÃ©passer 2000 caractÃ¨res");
 
-                // Vérifie la description
-                if (animal.Description == default)
-                    errors.Add("La date de naissance est obligatoire");
-                else if (animal.Description.Length > 2000)
-                    errors.Add("La description ne peut pas dépasser 2000 caractères");
+                // VÃ©rifie la race
+                if (newAnimal.BreedId <= 0)
+                    validationErrors.Add("La race est obligatoire");
 
-                // Vérifie la race
-                if (animal.BreedId <= 0)
-                    errors.Add("La race est obligatoire");
-
-                // Si des erreurs sont trouvées, on les renvoie
-                if (errors.Any())
+                // Si des erreurs sont trouvÃ©es, on les renvoie
+                if (validationErrors.Any())
                 {
                     return Json(new
                     {
                         success = false,
                         message = "Erreur de validation du formulaire",
-                        errors = errors
+                        errors = validationErrors
                     });
                 }
 
-                // Vérifie que la race existe
-                var breed = await _context.Breeds.FindAsync(animal.BreedId);
-                if (breed == null)
+                // VÃ©rifie que la race existe
+                Breed? selectedBreed = await _context.Breeds.FindAsync(newAnimal.BreedId);
+                if (selectedBreed == null)
                 {
                     return Json(new
                     {
                         success = false,
                         message = "Erreur de validation du formulaire",
-                        errors = new[] { "La race sélectionnée n'existe pas" }
+                        errors = new[] { "La race sÃ©lectionnÃ©e n'existe pas" }
                     });
                 }
 
-                // Sauvegarde l'animal dans la base de données
-                _context.Add(animal);
+                // Sauvegarde l'animal dans la base de donnÃ©es
+                _context.Add(newAnimal);
                 await _context.SaveChangesAsync();
 
                 return Json(new { success = true });
@@ -364,6 +376,35 @@ namespace ECF.Controllers
                     message = "Une erreur est survenue lors de l'inscription de l'animal.",
                     error = ex.Message
                 });
+            }
+        }
+
+        // GET: Animals/Search
+        // Recherche des animaux par nom ou race
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            try
+            {
+                IQueryable<Animal> animalsWithBreeds = _context.Animals
+                    .Include(a => a.Breed)
+                    .AsQueryable();
+
+                if (!string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    animalsWithBreeds = animalsWithBreeds.Where(a => 
+                        a.Name.Contains(searchTerm) || 
+                        (a.Breed != null && a.Breed.BreedName.Contains(searchTerm)));
+                }
+
+                List<Animal> matchingAnimals = await animalsWithBreeds
+                    .OrderBy(a => a.Name)
+                    .ToListAsync();
+
+                return View("Index", matchingAnimals);
+            }
+            catch
+            {
+                return View("Error");
             }
         }
     }

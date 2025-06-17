@@ -46,24 +46,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breeds/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRzXENyZWF0ZS5jc2h0bWw=
+[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breed/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breeds/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRzXERlbGV0ZS5jc2h0bWw=
+[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breed/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breeds/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRzXERldGFpbHMuY3NodG1s
+[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breed/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breeds/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breeds/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRzXEluZGV4LmNzaHRtbA==
+[C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Breed/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlZWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Léa Kenaoui/Desktop/Git/ECF-CSharp/ECF-CDA/ECF/ECF/Views/Home/Index.cshtml]
