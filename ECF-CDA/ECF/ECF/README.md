@@ -11,7 +11,7 @@ Application de gestion d'un refuge animalier développée en ASP.NET Core.
 
 1. Cloner le projet :
 ```bash
-git clone [URL_DU_REPO]
+git clone https://github.com/LKenaoui/ECF-CSharp
 cd ECF
 ```
 
